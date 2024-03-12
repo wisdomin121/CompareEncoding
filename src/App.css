@@ -1,2 +1,20 @@
-.App {
+.h1 {
+  font-size: x-large;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-4 {
+  gap: 4px;
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 
-import { Div, Input } from 'components';
+import { Title } from 'components';
 
 function App() {
   return (
     <div className="App">
-      <Div></Div>
-      <Input></Input>
+      <p className="h1 bold">Text Encoding</p>
+      <Title to="bits" from="ASCII" option="ENCODE" />
     </div>
   );
 }
