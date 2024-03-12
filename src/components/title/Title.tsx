@@ -2,7 +2,7 @@ import React from 'react';
 import '../../App.css';
 import './TitleStyle.css';
 
-interface ITitle {
+export interface ITitle {
   to: string;
   from?: string;
   option?: 'ENCODE' | 'DECODE';

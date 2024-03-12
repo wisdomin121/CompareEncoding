@@ -1,3 +1,3 @@
-export * from './div';
+export * from './result_div';
 export * from './input';
 export * from './title';
