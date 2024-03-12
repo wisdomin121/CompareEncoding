@@ -65,9 +65,9 @@ const decodeToUTF16 = (ascii: string) => {
       continue;
     }
 
-    // 공백이 제거되는 문자는 binary가 7글자이다.
-    else if (binary.length === 7) {
-      word = `000000000${hexArr[i]}`;
+    // 공백이 제거되는 문자는 binary가 7글자 이하이다.
+    else if (binary.length < 8) {
+      word = hexArr[i].padStart(16, '0');
     } else {
       word = hexArr.slice(i, i + 2).join('');
       i += 1;
