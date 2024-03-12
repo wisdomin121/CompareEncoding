@@ -1,9 +1,5 @@
-.h1 {
-  font-size: x-large;
-}
-
-.bold {
-  font-weight: 700;
+.App {
+  padding: 10px;
 }
 
 .flex {
@@ -15,6 +11,18 @@
   flex-direction: column;
 }
 
-.gap-4 {
+.gap-1 {
   gap: 4px;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.text-2xl {
+  font-size: 24px;
+}
+
+.bold {
+  font-weight: 700;
 }

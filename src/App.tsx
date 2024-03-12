@@ -1,13 +1,23 @@
 import React from 'react';
 import './App.css';
 
-import { Title } from 'components';
+import { Input, Title } from 'components';
 
 function App() {
   return (
-    <div className="App">
-      <p className="h1 bold">Text Encoding</p>
-      <Title to="bits" from="ASCII" option="ENCODE" />
+    <div className="App flex-column">
+      <p className="text-2xl mb-5">Text Encoding</p>
+
+      {/* 입력창 */}
+      <div className="flex-column gap-1 mb-5">
+        <Title to="input" />
+        <Input />
+      </div>
+
+      {/* 결과값 */}
+      <div>
+        <Title to="bits" from="ASCII" option="ENCODE" />
+      </div>
     </div>
   );
 }

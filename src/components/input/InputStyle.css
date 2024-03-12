@@ -1,0 +1,9 @@
+.input:not(p) {
+  width: 100%;
+  min-height: 80px;
+  padding: 4px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  resize: none;
+  outline: none;
+}
