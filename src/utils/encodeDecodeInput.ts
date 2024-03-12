@@ -82,7 +82,7 @@ const decodeToUTF16 = (ascii: string) => {
   return result;
 };
 
-export const encodeDecodeString = (input: string) => {
+export const encodeDecodeInput = (input: string) => {
   const encodedBits = encodeToBits(input);
   const encodedASCII = encodeToASCII(encodedBits);
   const encodedBase64 = encodeToBase64(encodedASCII);

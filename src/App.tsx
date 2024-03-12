@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 import { ITitle, Input, ResultDiv, Title } from 'components';
-import { encodeDecodeString } from 'utils';
+import { encodeDecodeInput } from 'utils';
 
 interface IResultInfos extends ITitle {
   text: string;
@@ -53,7 +53,7 @@ function App() {
       encodedBase64,
       decodedASCII,
       decodedUTF16,
-    ] = encodeDecodeString(e.target.value);
+    ] = encodeDecodeInput(e.target.value);
 
     setEncodedBits(encodedBits);
     setEncodedASCII(encodedASCII);

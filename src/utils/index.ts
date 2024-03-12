@@ -1,1 +1,1 @@
-export * from './encodeDecodeString';
+export * from './encodeDecodeInput';
