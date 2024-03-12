@@ -13,10 +13,7 @@ const encodeToASCII = (bits: string) => {
       for (let i = 0; i < bit16.length; i += 8) {
         const bit8 = bit16.substring(i, i + 8);
 
-        // 공백 생김 막기
-        if (bit8 !== '00000000') {
-          asciiArr.push(parseInt(bit8, 2));
-        }
+        asciiArr.push(parseInt(bit8, 2));
       }
       return asciiArr;
     }, [])
@@ -38,7 +35,7 @@ const asciiToBinaryAndHex = (ascii: string) => {
   let hexArr = [];
 
   for (let i = 0; i < ascii.length; i++) {
-    let binary = ascii.charCodeAt(i).toString(2);
+    let binary = ascii.charCodeAt(i).toString(2).padStart(8, '0');
     let hex = ascii.charCodeAt(i).toString(16).toUpperCase().padStart(2, '0');
 
     binaryArr.push(binary);
@@ -57,17 +54,12 @@ const decodeToUTF16 = (ascii: string) => {
     let word: string;
 
     // surrogate 판별
-    if (binary.startsWith('110110') && binaryArr[i + 3].startsWith('110111')) {
+    if (binary.startsWith('110110') && binaryArr[i + 3]?.startsWith('110111')) {
       result +=
         String.fromCharCode(parseInt(hexArr.slice(i, i + 2).join(''), 16)) +
         String.fromCharCode(parseInt(hexArr.slice(i + 2, i + 4).join(''), 16));
       i += 3;
       continue;
-    }
-
-    // 공백이 제거되는 문자는 binary가 7글자 이하이다.
-    else if (binary.length < 8) {
-      word = hexArr[i].padStart(16, '0');
     } else {
       word = hexArr.slice(i, i + 2).join('');
       i += 1;
