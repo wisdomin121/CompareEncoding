@@ -1,32 +1,27 @@
 const encodeToBits = (input: string) => {
-  let bits = '';
-
-  for (let i = 0; i < input.length; i++) {
-    const binary = input.charCodeAt(i).toString(2).padStart(16, '0');
-    bits += `${binary} `;
-  }
-
-  return bits;
+  return input
+    .split('')
+    .map((char) => char.charCodeAt(0).toString(2).padStart(16, '0'))
+    .join(' ');
 };
 
 const encodeToASCII = (bits: string) => {
-  const bit16Arr = bits.split(' ');
-  const asciiArr = [];
+  return bits
+    .split(' ')
+    .reduce((asciiArr: number[], bit16: string) => {
+      // 16비트 → 8비트로 나눠서 ASCII로 변환
+      for (let i = 0; i < bit16.length; i += 8) {
+        const bit8 = bit16.substring(i, i + 8);
 
-  // 16비트 → 8비트로 나눠서 ASCII로 변환
-  for (const bit16 of bit16Arr) {
-    for (let i = 0; i < bit16.length; i += 8) {
-      const bit8 = bit16.substring(i, i + 8);
-
-      // 공백 생김 막기
-      if (bit8 === '00000000') continue;
-
-      const asciiCode = parseInt(bit8, 2);
-      asciiArr.push(asciiCode);
-    }
-  }
-
-  return String.fromCharCode(...asciiArr);
+        // 공백 생김 막기
+        if (bit8 !== '00000000') {
+          asciiArr.push(parseInt(bit8, 2));
+        }
+      }
+      return asciiArr;
+    }, [])
+    .map((code) => String.fromCharCode(code))
+    .join('');
 };
 
 const encodeToBase64 = (ascii: string) => {
@@ -68,7 +63,10 @@ const decodeToUTF16 = (ascii: string) => {
         String.fromCharCode(parseInt(hexArr.slice(i + 2, i + 4).join(''), 16));
       i += 3;
       continue;
-    } else if (binary.length === 7) {
+    }
+
+    // 공백이 제거되는 문자는 binary가 7글자이다.
+    else if (binary.length === 7) {
       word = `000000000${hexArr[i]}`;
     } else {
       word = hexArr.slice(i, i + 2).join('');
